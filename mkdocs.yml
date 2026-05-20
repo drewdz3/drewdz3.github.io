@@ -14,14 +14,14 @@ theme:
     - content.code.copy
   palette:
     - scheme: slate
-      primary: blue
-      accent: blue
+      primary: black
+      accent: black
       toggle:
         icon: material/brightness-7
         name: Switch to light mode
     - scheme: default
-      primary: blue
-      accent: blue
+      primary: white
+      accent: white
       toggle:
         icon: material/brightness-4
         name: Switch to dark mode
