@@ -168,15 +168,16 @@ def render_project_page(site):
 def render_projects_pages_file(sites):
     lines = [
         "nav:",
-        "  - Overview: index.md",
     ]
 
     for site in sorted(sites, key=lambda item: item.get("name", "")):
         name = site.get("name") or site.get("slug") or "Unnamed documentation site"
-        file_name = site["_generated_file_name"]
+        url = site.get("url")
         safe_name = name.replace('"', '\\"')
-        lines.append(f'  - "{safe_name}": {file_name}')
 
+        if url:
+            lines.append(f'  - "{safe_name}": {url}')
+        
     lines.append("")
     return "\n".join(lines)
 
