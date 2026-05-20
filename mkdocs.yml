@@ -2,8 +2,8 @@ site_name: Documentation Portal
 
 theme:
   name: material
-  logo: logo.png
-  favicon: logo.png
+  logo: logo.svg
+  favicon: logo-hero.svg
   custom_dir: overrides
   features:
     - navigation.sections
