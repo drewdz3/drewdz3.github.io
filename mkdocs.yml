@@ -29,6 +29,9 @@ theme:
 plugins:
   - search
   - awesome-pages
+  
+extra:
+  scope: /
 
 extra_css:
   - styles.css
