@@ -34,5 +34,3 @@ extra_css:
   - styles.css
 
 nav:
-  - Home: index.md
-  - Project Docs: projects/index.md
