@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import sys
 import urllib.error
 import urllib.request
@@ -9,6 +10,9 @@ from pathlib import Path
 OWNER = os.environ.get("GITHUB_REPOSITORY_OWNER")
 CURRENT_REPO = os.environ.get("GITHUB_REPOSITORY", "").split("/")[-1]
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
+
+PROJECTS_DIR = Path("docs/projects")
+
 
 if not OWNER:
     print("GITHUB_REPOSITORY_OWNER is required.", file=sys.stderr)
@@ -74,11 +78,26 @@ def list_repos():
     return repos
 
 
-def render_project_index(sites):
+def safe_file_name(value: str) -> str:
+    value = value.strip().lower()
+    value = re.sub(r"[^a-z0-9_-]+", "-", value)
+    value = re.sub(r"-+", "-", value)
+    return value.strip("-") or "documentation-site"
+
+
+def clean_generated_project_pages():
+    PROJECTS_DIR.mkdir(parents=True, exist_ok=True)
+
+    for path in PROJECTS_DIR.glob("*.md"):
+        if path.name != "index.md":
+            path.unlink()
+
+
+def render_projects_index(sites):
     lines = [
-        "# Project Documentation",
+        "# Projects",
         "",
-        "The following documentation sites are published from project repositories.",
+        "The following project documentation sites are available.",
         "",
     ]
 
@@ -91,38 +110,74 @@ def render_project_index(sites):
         )
         return "\n".join(lines)
 
-    grouped = {}
+    for site in sorted(sites, key=lambda item: item.get("name", "")):
+        name = site.get("name") or site.get("slug") or "Unnamed documentation site"
+        url = site.get("url")
+        description = site.get("description") or ""
 
-    for site in sites:
-        site_type = site.get("type") or "project"
-        grouped.setdefault(site_type, []).append(site)
+        if url:
+            lines.append(f"- [{name}]({url})")
+        else:
+            lines.append(f"- {name}")
 
-    for site_type in sorted(grouped.keys()):
-        heading = site_type.replace("-", " ").replace("_", " ").title()
-        lines.append(f"## {heading}")
-        lines.append("")
+        if description:
+            lines.append(f"  - {description}")
 
-        for site in sorted(grouped[site_type], key=lambda item: item.get("name", "")):
-            name = site.get("name") or site.get("slug") or "Unnamed documentation site"
-            url = site.get("url")
-            repo_url = site.get("repo_url")
-            description = site.get("description") or ""
+    lines.append("")
+    return "\n".join(lines)
 
-            if url:
-                lines.append(f"### [{name}]({url})")
-            else:
-                lines.append(f"### {name}")
 
-            if description:
-                lines.append("")
-                lines.append(description)
+def render_project_page(site):
+    name = site.get("name") or site.get("slug") or "Unnamed documentation site"
+    url = site.get("url")
+    repo_url = site.get("repo_url")
+    description = site.get("description") or ""
 
-            if repo_url:
-                lines.append("")
-                lines.append(f"[Source repository]({repo_url})")
+    lines = [
+        f"# {name}",
+        "",
+    ]
 
-            lines.append("")
+    if description:
+        lines.extend(
+            [
+                description,
+                "",
+            ]
+        )
 
+    if url:
+        lines.extend(
+            [
+                f"[Open documentation site]({url})",
+                "",
+            ]
+        )
+
+    if repo_url:
+        lines.extend(
+            [
+                f"[Source repository]({repo_url})",
+                "",
+            ]
+        )
+
+    return "\n".join(lines)
+
+
+def render_projects_pages_file(sites):
+    lines = [
+        "nav:",
+        "  - Overview: index.md",
+    ]
+
+    for site in sorted(sites, key=lambda item: item.get("name", "")):
+        name = site.get("name") or site.get("slug") or "Unnamed documentation site"
+        file_name = site["_generated_file_name"]
+        safe_name = name.replace('"', '\\"')
+        lines.append(f'  - "{safe_name}": {file_name}')
+
+    lines.append("")
     return "\n".join(lines)
 
 
@@ -140,11 +195,28 @@ def main():
         manifest = try_get_public_json(manifest_url)
 
         if manifest:
+            slug = manifest.get("slug") or repo_name
+            manifest["_generated_file_name"] = f"{safe_file_name(slug)}.md"
             sites.append(manifest)
 
-    output_path = Path("docs/projects/index.md")
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(render_project_index(sites), encoding="utf-8")
+    clean_generated_project_pages()
+
+    (PROJECTS_DIR / "index.md").write_text(
+        render_projects_index(sites),
+        encoding="utf-8",
+    )
+
+    for site in sites:
+        project_page_path = PROJECTS_DIR / site["_generated_file_name"]
+        project_page_path.write_text(
+            render_project_page(site),
+            encoding="utf-8",
+        )
+
+    (PROJECTS_DIR / ".pages").write_text(
+        render_projects_pages_file(sites),
+        encoding="utf-8",
+    )
 
     print(f"Discovered {len(sites)} documentation site(s).")
     for site in sites:
