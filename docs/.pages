@@ -1,5 +1,5 @@
 nav:
   - index.md
-  - projects/
   - architecture/
+  - projects/
   - ...
