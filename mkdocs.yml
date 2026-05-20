@@ -32,5 +32,3 @@ plugins:
 
 extra_css:
   - styles.css
-
-nav:
