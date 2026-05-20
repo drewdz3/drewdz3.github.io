@@ -112,8 +112,9 @@ def main():
 
     # Remove old generated Markdown files from the previous implementation.
     for path in PROJECTS_DIR.glob("*.md"):
-        path.unlink()
-
+        if path.name != "index.md":
+            path.unlink()
+        
     (PROJECTS_DIR / ".pages").write_text(
         render_projects_pages_file(sites),
         encoding="utf-8",
