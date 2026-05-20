@@ -1,4 +1,4 @@
-# Architecture Document Title
+# Architecture Document Sample
 
 ## Summary
 

@@ -4,6 +4,9 @@
   --aya-orange: #F15E22;
   --aya-yellow: #FCB514;
   --aya-red: #BC1F18;
+
+  --corporate-border: #D7DDE5;
+  --corporate-bg-soft: #F6F8FB;
 }
 
 /* Light mode */
@@ -16,9 +19,18 @@
   --corporate-accent: var(--aya-teal);
 }
 
+[data-md-color-scheme="default"] .md-header {
+  border-bottom: 1px solid #E5E7EB;
+  box-shadow: none;
+}
+
+[data-md-color-scheme="slate"] .md-header {
+  border-bottom: 1px solid #0B5A6B;
+}
+
 /* Dark mode */
 [data-md-color-scheme="slate"] {
-  --md-primary-fg-color: #034A59;
+  --md-primary-fg-color: var(--aya-deep-teal);
   --md-primary-bg-color: #FFFFFF;
   --md-accent-fg-color: var(--aya-teal);
 
