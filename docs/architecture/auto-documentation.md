@@ -107,11 +107,13 @@ No changes are needed for this to work.
 
 - Sets up everything `mkdocs` needs to convert your markdown files to HTML
 - Creates the variables that will be used in the process:
+
   - `REPO_FULL_NAME`
   - `REPO_NAME`
   - `REPO_URL`
   - `PAGES_URL`
   - `SITE_NAME` - Derived title for your pages site.
+  
 - Executes `mkdocs.yml` to convert markdown to HTML
   - Sets up navigation
   - Creates a light/dark mode switch
