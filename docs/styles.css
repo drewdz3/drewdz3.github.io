@@ -53,10 +53,6 @@ h3 {
   color: var(--corporate-primary);
 }
 
-.md-content a {
-  color: var(--corporate-accent);
-}
-
 code {
   border-radius: 4px;
 }
