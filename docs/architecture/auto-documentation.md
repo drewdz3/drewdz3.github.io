@@ -34,13 +34,13 @@ not applicable.
 
 ## Context
 
-Traditionally here at Aya, we have placed all forms of documentation into Confluence. This has worked well enough, but many have reported frustration that documentation is hard to find, and its even harder to determine which documentation is really current from that which is just an opinion. We have create a method whereby project documentation can be automatically exported to HTML and published to GitHub pages, and made discoverable from our central hub by following a few simple steps.
+Traditionally here at Aya, we have placed all forms of documentation into Confluence. This has worked well enough, but many have reported frustration that documentation is hard to find, and its even harder to determine which documentation is really current from that which is just an opinion. We have created a method whereby project documentation can be automatically exported to HTML and published to GitHub pages, and made discoverable from our central hub by following a few simple steps.
 
 ---
 
 ## Goals
 
-The purpose of this document is to provide guidance on setting up this feature.
+The purpose of this document is to provide guidance on setting up this feature for a repository.
 
 ---
 
@@ -123,13 +123,15 @@ No changes are needed for this to work.
 ...- Creates a link to the repository
 - Uploads the converted HTML to the pages site.
 
+> NOTE: There is no `docs/index.md` in this structure. Your project MUST have a default `readme.md` where you describe the project and place any necessary details and links. When the workflow executes, the project's default `readme.md` is copied and converted to `index.html` and serves as the default page for the project.
+
 ## Summary
 
 In this document we have:
 - Setup the repository to enable GitHub pages
 - Created or copied the needed files to support the process
 ...- `mkdocs.yml`
-...- `docs/index.md`
+...- `docs/.pages`
 ...- `docs/docs-site.json`
 ...- `docs/logo.svg`
 ...- `docs/styles.css`
