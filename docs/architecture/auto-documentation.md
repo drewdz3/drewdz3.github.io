@@ -106,35 +106,30 @@ No changes are needed for this to work.
 `.github/workflows/pages.yml` is executed whenever changes are pushed into your main branch. During execution, `pages.yml` does the following:
 
 - Sets up everything `mkdocs` needs to convert your markdown files to HTML
-- Creates the variables that will be used in the process:
-
-  - `REPO_FULL_NAME`
-  - `REPO_NAME`
-  - `REPO_URL`
-  - `PAGES_URL`
-  - `SITE_NAME` - Derived title for your pages site.
-  
+- Creates the variables that will be used in the process
 - Executes `mkdocs.yml` to convert markdown to HTML
-  - Sets up navigation
-  - Creates a light/dark mode switch
-  - Enables search
-  - Links back to the documentation root page
-  - Creates a link to the repository
 - Uploads the converted HTML to the pages site.
+
+`mkdocs.yml` does the following:
+
+- Sets up navigation
+- Creates a light/dark mode switch
+- Enables search
+- Links back to the documentation root page
+- Creates a link to the repository
+
 
 > NOTE: There is no `docs/index.md` in this structure. Your project MUST have a default `readme.md` where you describe the project and place any necessary details and links. When the workflow executes, the project's default `readme.md` is copied and converted to `index.html` and serves as the default page for the project.
 
 ## Summary
 
-In this document we have:
+In this document we have setup the repository to enable GitHub pages and created or copied the needed files to support the process:
 
-- Setup the repository to enable GitHub pages
-- Created or copied the needed files to support the process
-  - `mkdocs.yml`
-  - `docs/.pages`
-  - `docs/docs-site.json`
-  - `docs/logo.svg`
-  - `docs/styles.css`
-  - `.github/workflows/pages.yml`
+- `mkdocs.yml`
+- `docs/.pages`
+- `docs/docs-site.json`
+- `docs/logo.svg`
+- `docs/styles.css`
+- `.github/workflows/pages.yml`
 
 If you're interested check out the guide for setting up the documentation root that also discovers all other sites.

@@ -120,32 +120,28 @@ No changes are needed for this to work.
 The workflow `.github/workflows/pages.yml` is executed whenever changes are pushed into your main branch. During execution, `pages.yml` does the following:
 
 - Sets up everything `mkdocs` needs to convert your markdown files to HTML
-- Creates the variables that will be used in the process:
-  - `REPO_FULL_NAME`
-  - `REPO_NAME`
-  - `REPO_URL`
-  - `PAGES_URL`
-  - `SITE_NAME` - Derived title for your pages site.
-- Execute the python script `generate_project_index.py` to discover child repositories and dynamically create nav items for them.
+- Creates the variables that will be used in the process
+- Executes the python script `generate_project_index.py` to discover child repositories and dynamically create nav items for them.
 - Executes `mkdocs.yml` to convert "local" markdown to HTML
-  - Sets up navigation
-  - Creates a light/dark mode switch
-  - Enables search
-  - Creates a link to the repository
-  Publishes the pages site.
+- Publishes the pages site.
+
+`mkdocs.yml` does the following:
+
+- Sets up navigation
+- Creates a light/dark mode switch
+- Enables search
+- Creates a link to the repository
 
 ## Summary
 
-In this document we have:
+In this document we have setup the special case repository to enable GitHub pages as a documentation root and created or copied the needed files to support the process:
 
-- Setup the special case repository to enable GitHub pages as a documentation root.
-- Created or copied the needed files to support the process
-  - `mkdocs.yml`
-  - `docs/.pages`
-  - `docs/index.md`
-  - `docs/logo.svg`
-  - `docs/styles.css`
-  - `scripts/generate_project_index.py`
-  - `.github/workflows/pages.yml`
+- `mkdocs.yml`
+- `docs/.pages`
+- `docs/index.md`
+- `docs/logo.svg`
+- `docs/styles.css`
+- `scripts/generate_project_index.py`
+- `.github/workflows/pages.yml`
 
 Now that you have a documentation root setup, check out our guide for setting up individual "child" repositories that can be discovered and dynamically included in this structure.
