@@ -1,4 +1,4 @@
-# Architecture Document Sample
+# Architecture Document Example
 
 ## Summary
 
@@ -38,9 +38,9 @@ YYYY-MM-DD, if applicable.
 
 ---
 
-## Context
+## Context (optional)
 
-Describe the business, technical, or organizational context that led to this architecture.
+Describe the business, technical, or organizational context relating to this document.
 
 Include relevant background such as:
 
@@ -52,9 +52,9 @@ Include relevant background such as:
 
 ---
 
-## Goals
+## Goals (optional)
 
-List the goals this architecture is intended to achieve.
+List the goals this information is intended to achieve.
 
 Example:
 
@@ -65,7 +65,7 @@ Example:
 
 ---
 
-## Non-Goals
+## Non-Goals (optional)
 
 Clearly state what this document does **not** attempt to solve.
 
@@ -77,9 +77,9 @@ Example:
 
 ---
 
-## Scope
+## Scope (optional)
 
-Describe what is included in this architecture.
+Describe what is included in this document.
 
 ### In Scope
 
@@ -99,13 +99,18 @@ Describe what is included in this architecture.
 
 ---
 
-## Current State
+## Current State (optional)
 
 Describe the current architecture, process, or system behavior.
 
 This section is especially useful when the document proposes a change from an existing pattern.
 
-```mermaid
-flowchart LR
-    A[Existing System] --> B[Manual Process]
-    B --> C[External Provider]
+## Proposed State
+
+In as much detail as possible that is relevant to the identified audience, unpack the information.
+- Avoid very long paragraphs if possible
+- Prefer bulleted and numbered lists
+- Prefer images and diagram
+- Rubber duck your document to a colleague to determine whether images or diagrams need a description
+- Good diagrams to consider could include C4 diagrams, sequence diagrams, flow diagrams, etc.
+
