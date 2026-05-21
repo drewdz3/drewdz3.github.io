@@ -2,7 +2,7 @@
 
 ## Summary
 
-To setup a documentation root site that automatically links to all other documentation sites within the organization, follow this guide.
+To setup a documentation root site that dynamically links to all other documentation sites within the organization, follow this guide.
 
 ---
 
@@ -16,19 +16,9 @@ To setup a documentation root site that automatically links to all other documen
 
 ## Status
 
-**Status:** Proposed
-
-**Decision Owner:**  
-Architecture Team
-
-**Reviewers:**  
-Architecture Team
-
-**Last Reviewed:**  
-2026-05-21
-
-**Next Review:**  
-not applicable.
+| Status | Decision Owner | Reviewers | Last Reviewed | Next Review |
+| --- | --- | --- | --- | --- |
+| **Proposed** | Architecture Team | Architecture Team | 2026-05-21 | not applicable |
 
 ---
 

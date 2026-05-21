@@ -22,19 +22,9 @@ This document describes the architecture for the xxx Service, including its resp
 
 ## Status
 
-**Status:** Draft / Proposed / Approved / Deprecated / Superseded
-
-**Decision Owner:**  
-Name or team responsible for the architectural decision.
-
-**Reviewers:**  
-List teams, architects, engineers, security, operations, or other stakeholders.
-
-**Last Reviewed:**  
-YYYY-MM-DD
-
-**Next Review:**  
-YYYY-MM-DD, if applicable.
+| Status | Decision Owner | Reviewers | Last Reviewed | Next Review |
+| --- | --- | --- | --- | --- |
+| **Draft** / Proposed / Approved / Deprecated / Superseded | Name or team responsible for the architectural decision. | List teams, architects, engineers, security, operations, or other stakeholders. | YYYY-MM-DD | YYYY-MM-DD, if applicable |
 
 ---
 

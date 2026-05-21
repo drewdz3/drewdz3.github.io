@@ -2,7 +2,7 @@
 
 ## Summary
 
-To have your repository or a new repository automatically be included in this site and browseable within the company, follow these simple steps.
+To have your repository or a new repository dynamically be included in this site and browseable within the company, follow these simple steps.
 
 ---
 
@@ -16,19 +16,9 @@ To have your repository or a new repository automatically be included in this si
 
 ## Status
 
-**Status:** Proposed
-
-**Decision Owner:**  
-Architecture Team
-
-**Reviewers:**  
-Architecture Team
-
-**Last Reviewed:**  
-2026-05-21
-
-**Next Review:**  
-not applicable.
+| Status | Decision Owner | Reviewers | Last Reviewed | Next Review |
+| --- | --- | --- | --- | --- |
+| **Proposed** | Architecture Team | Architecture Team | 2026-05-21 | not applicable |
 
 ---
 
