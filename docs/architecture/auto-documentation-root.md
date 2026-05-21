@@ -45,6 +45,7 @@ Child repositories are only discovered during the build process and not through 
 ### Create a documentation root repository
 
 Typically, the architecture organization owns technical documentation, and so the root documentation repository would house any over-arching or cross-cutting architectural documents that aren't linked to any specific project or repository. Examples are:
+
 - ADRs that affect the entire organization
 - Architectural standards and best practices
 - Outcomes from investigations or POCs that can be useful for teams when a specific technology is required.
@@ -53,16 +54,17 @@ In GitHub, create a new repository with the following name:
 
 > `[org_name].github.io` eg: `AyaHealthcare.github.io`
 
-This special naming that is reserved for this purpose.
+This is a special name that is reserved for this purpose.
 
-During creating allow GitHub to create an initial `readme.md` file.
+During creation let GitHub create an initial `readme.md` file.
 
 ### Setup GitHub pages
 
-- In your `[org_name].github.io` repository
+In your `[org_name].github.io` repository:
+
 - Open Settings
 - Select Pages
-- Under `Build and deployment` Set `Source` to `GitHub Actions`
+- Under `Build and deployment`, set `Source` to `GitHub Actions`
 - The site url will be `https://[org_name].github.io`, eg: `https://AyaHealthcare.github.io`
   
 You must either have a paid subscription with pages enabled, or your repository must be public to do this.
@@ -74,6 +76,7 @@ In your repository, create a new folder
 > `docs`
 
 Copy the following files into your `docs` folder:
+
 - `.pages`
 - `index.md`
 - `logo.svg`
@@ -81,19 +84,19 @@ Copy the following files into your `docs` folder:
 
 ### Create the `.pages` file
 
-Inside your docs folder, create a new file named `.pages` with the following content:
+Inside your `docs` folder, create a new file named `.pages` with the following content:
 
-> ``nav:
-> ``  - architecture
-> ``  - projects
-> ``  - index.md
-> ``  - "... | regex=^(?!index\\.md$).*"
+``nav:
+``  - architecture
+``  - projects
+``  - index.md
+``  - "... | regex=^(?!index\\.md$).*"
 
 Note that the content of this file is different from the same file in "child" repositories. Here we explicitly create nav sections for the content we want to publish. All discovered repositories will be listed under `projects`. You can add any other groups you want here.
 
 ### Copy `mkdocs.yml`
 
-In the root of your repository, copy `mkdocs.yml`. This tells the GitHub action how to process your files. No changes are needed to this file when copied from an existing documentation root repository.
+Copy `mkdocs.yml` to the root of the repository. This tells the GitHub action how to process your files. No changes are needed to this file when copied from an existing documentation root repository.
 
 ### Create the scripts folder
 
@@ -101,7 +104,7 @@ In the root of your repository, copy `mkdocs.yml`. This tells the GitHub action 
 - `scripts` and `docs` must be siblings. 
 - Copy `generate_project_index.py` into `scripts`
 
-This script iterates repositories in the organization and lists those with the doc discovery JSON file, `docs-site.json`. It then reads the content of the file to get a description of the site and places a link in the nav. The project link will link to the "child" repositories `docs/index.html` page. This page is auto-generated from the project's default `readme.md`.
+This script iterates repositories in the organization and lists those with the discovery contract file, `docs-site.json`. It then reads the content of the file to get a description of the site and places a link in the nav. The project link will link to the "child" repository's `docs/index.html` page. `docs/index.html` in "child" repositories is auto-generated from the project's default `readme.md`.
 
 ### Create the workflow
 
@@ -112,7 +115,8 @@ No changes are needed for this to work.
 
 ## Explanation
 
-`.github/workflows/pages.yml` is executed whenever changes are pushed into your main branch. During execution, `pages.yml` does the following:
+The workflow `.github/workflows/pages.yml` is executed whenever changes are pushed into your main branch. During execution, `pages.yml` does the following:
+
 - Sets up everything `mkdocs` needs to convert your markdown files to HTML
 - Creates the variables that will be used in the process:
 ...- `REPO_FULL_NAME`
@@ -131,6 +135,7 @@ No changes are needed for this to work.
 ## Summary
 
 In this document we have:
+
 - Setup the special case repository to enable GitHub pages as a documentation root.
 - Created or copied the needed files to support the process
 ...- `mkdocs.yml`

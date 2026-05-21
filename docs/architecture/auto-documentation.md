@@ -2,7 +2,7 @@
 
 ## Summary
 
-To have your repository or a new repository dynamically be included in this site and browseable within the company, follow these simple steps.
+To have your repository or a new repository dynamically included in this site and browseable within the company, follow these simple steps.
 
 ---
 
@@ -30,20 +30,21 @@ Traditionally here at Aya, we have placed all forms of documentation into Conflu
 
 ## Goals
 
-The purpose of this document is to provide guidance on setting up this feature for a repository.
+The purpose of this document is to provide guidance on setting up a static website hosted in GitHub pages for documentation that is auto-generated from markdown files in the repo.
 
 ---
 
 ## Setup
 
-The folder structure and files referenced in this guide can be copied from this or (almost) any existing repository that uses this pattern.
+The folder structure and files referenced in this guide can be copied from (almost) any existing repository that uses this pattern without changes.
 
 ### Setup GitHub pages
 
-- Inside your repository on GitHub
+Inside your repository on GitHub:
+
 - Open Settings
 - Select Pages
-- Under `Build and deployment` Set `Source` to `GitHub Actions`
+- Under `Build and deployment` set `Source` to `GitHub Actions`
 - Once a build has been complete return here to find your site URL above `Build and deployment`
   
 You must either have a paid subscription with pages enabled, or your repository must be public to do this.
@@ -55,6 +56,7 @@ In your repository, create a new folder
 > `docs`
 
 Copy the following files into your `docs` folder:
+
 - `logo.svg`
 - `styles.css`
 
@@ -62,9 +64,9 @@ Copy the following files into your `docs` folder:
 
 Inside your docs folder, create a new file named `.pages` with the following content:
 
-> ``nav:
-> ``  - index.md
-> ``  - ...
+``nav:
+``  - index.md
+``  - ...
 
 This file tells `mkdocs`, our GitHub action, how to order your files. In this case, index first, then everything else. You can add files here if you want them in a specific order.
 
@@ -72,21 +74,21 @@ This file tells `mkdocs`, our GitHub action, how to order your files. In this ca
 
 Also in `docs`, create a new file, `docs-site.json` with the following content:
 
-> `` {
-> ``   "name": "[human readable name / title]",
-> ``   "slug": "[repo_name]",
-> ``   "repo": "[repo_relative_path]",
-> ``   "repo_url": "[repo_full_path]",
-> ``   "url": "[repo_pages_full_path]",
-> ``   "description": "[Some description of your project]",
-> ``   "type": "project"
-> `` }
+`` {
+``   "name": "[human readable name / title]",
+``   "slug": "[repo_name]",
+``   "repo": "[repo_relative_path]",
+``   "repo_url": "[repo_full_path]",
+``   "url": "[repo_pages_full_path]",
+``   "description": "[Some description of your project]",
+``   "type": "project"
+`` }
 
-This file is the contract that allows your repository to be discovered by the root and describes it.
+This file is the contract that allows your repository to be discovered by the root and dynamically added to the nav. It also provided additional information about it.
 
 ### Copy `mkdocs.yml`
 
-In the root of your repository, copy `mkdocs.yml`. This tells the GitHub action how to process your files. No changes are needed to this file.
+Copy the file `mkdocs.yml` to the root of your repository. This tells the GitHub action how to process your files. No changes are needed to this file.
 
 ### Create the workflow
 
@@ -98,6 +100,7 @@ No changes are needed for this to work.
 ## Explanation
 
 `.github/workflows/pages.yml` is executed whenever changes are pushed into your main branch. During execution, `pages.yml` does the following:
+
 - Sets up everything `mkdocs` needs to convert your markdown files to HTML
 - Creates the variables that will be used in the process:
 ...- `REPO_FULL_NAME`
@@ -118,6 +121,7 @@ No changes are needed for this to work.
 ## Summary
 
 In this document we have:
+
 - Setup the repository to enable GitHub pages
 - Created or copied the needed files to support the process
 ...- `mkdocs.yml`
