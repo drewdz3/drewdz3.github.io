@@ -86,11 +86,13 @@ Copy the following files into your `docs` folder:
 
 Inside your `docs` folder, create a new file named `.pages` with the following content:
 
-``nav:
-``  - architecture
-``  - projects
-``  - index.md
-``  - "... | regex=^(?!index\\.md$).*"
+```
+nav:
+  - architecture
+  - projects
+  - index.md
+  - "... | regex=^(?!index\\.md$).*"
+```
 
 Note that the content of this file is different from the same file in "child" repositories. Here we explicitly create nav sections for the content we want to publish. All discovered repositories will be listed under `projects`. You can add any other groups you want here.
 
@@ -119,18 +121,18 @@ The workflow `.github/workflows/pages.yml` is executed whenever changes are push
 
 - Sets up everything `mkdocs` needs to convert your markdown files to HTML
 - Creates the variables that will be used in the process:
-- - `REPO_FULL_NAME`
-- - `REPO_NAME`
-- - `REPO_URL`
-- - `PAGES_URL`
-- -`SITE_NAME` - Derived title for your pages site.
+  - `REPO_FULL_NAME`
+  - `REPO_NAME`
+  - `REPO_URL`
+  - `PAGES_URL`
+  - `SITE_NAME` - Derived title for your pages site.
 - Execute the python script `generate_project_index.py` to discover child repositories and dynamically create nav items for them.
 - Executes `mkdocs.yml` to convert "local" markdown to HTML
-- - Sets up navigation
-- - Creates a light/dark mode switch
-- - Enables search
-- - Creates a link to the repository
-- Publishes the pages site.
+  - Sets up navigation
+  - Creates a light/dark mode switch
+  - Enables search
+  - Creates a link to the repository
+  Publishes the pages site.
 
 ## Summary
 
@@ -138,12 +140,12 @@ In this document we have:
 
 - Setup the special case repository to enable GitHub pages as a documentation root.
 - Created or copied the needed files to support the process
-- - `mkdocs.yml`
-- - `docs/.pages`
-- - `docs/index.md`
-- - `docs/logo.svg`
-- - `docs/styles.css`
-- - `scripts/generate_project_index.py`
-- - `.github/workflows/pages.yml`
+  - `mkdocs.yml`
+  - `docs/.pages`
+  - `docs/index.md`
+  - `docs/logo.svg`
+  - `docs/styles.css`
+  - `scripts/generate_project_index.py`
+  - `.github/workflows/pages.yml`
 
 Now that you have a documentation root setup, check out our guide for setting up individual "child" repositories that can be discovered and dynamically included in this structure.
