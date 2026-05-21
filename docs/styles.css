@@ -9,7 +9,6 @@
   --corporate-bg-soft: #F6F8FB;
 }
 
-/* Light mode */
 [data-md-color-scheme="default"] {
   --md-primary-fg-color: #FFFFFF;
   --md-primary-bg-color: var(--aya-deep-teal);
@@ -17,6 +16,8 @@
 
   --corporate-primary: var(--aya-deep-teal);
   --corporate-accent: var(--aya-teal);
+  
+  --md-nav_link--active: #000000
 }
 
 [data-md-color-scheme="default"] .md-header {
@@ -36,6 +37,8 @@
 
   --corporate-primary: #FFFFFF;
   --corporate-accent: var(--aya-teal);
+  
+  --md-nav_link--active: #FFFFFF
 }
 
 body {
