@@ -53,7 +53,7 @@ h3 {
   color: var(--corporate-primary);
 }
 
-a {
+.md-content a {
   color: var(--corporate-accent);
 }
 

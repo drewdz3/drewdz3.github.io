@@ -119,7 +119,7 @@ No changes are needed for this to work.
 - Creates a link to the repository
 
 
-> NOTE: There is no `docs/index.md` in this structure. Your project MUST have a default `readme.md` where you describe the project and place any necessary details and links. When the workflow executes, the project's default `readme.md` is copied and converted to `index.html` and serves as the default page for the project.
+> NOTE: There is no `docs/index.md` in this structure. Your project MUST have a default `readme.md` where you describe the project and place any necessary details and links. When the workflow executes, the project's default `readme.md` is copied and converted to `docs/index.html` and serves as the default page for the project.
 
 ## Summary
 
